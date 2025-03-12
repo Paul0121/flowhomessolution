@@ -1,8 +1,10 @@
 import streamlit as st
 from transformers import pipeline
 
-# Load the summarization model (lighter version to avoid timeouts)
-summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
+# Set a local directory for caching the model to prevent re-downloading issues
+MODEL_NAME = "sshleifer/distilbart-cnn-12-6"
+
+summarizer = pipeline("summarization", model=MODEL_NAME, cache_dir="./models")
 
 # Streamlit App
 st.title("Conversation Summarizer")
